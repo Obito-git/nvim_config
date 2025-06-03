@@ -13,6 +13,7 @@
 ## TODO
 - figure out how to use multiple terminals
 - reorganize init.lua and literally everything else :D
+- set page up and page down to scroll terminal
 
 ## Debuger todo
 How to use:
