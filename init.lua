@@ -43,7 +43,6 @@ vim.o.scrolloff = 15 -- Minimal number of screen lines to keep above and below t
 vim.o.confirm = true -- When exit with unsaved will trigger a dialog
 
 -- [[ Basic Keymaps ]]
---  See `:help vim.keymap.set()`
 
 vim.keymap.set('n', '<PageDown>', '7<C-e>', { noremap = true, silent = true, desc = 'Scroll down 7 lines (no cursor move)' })
 vim.keymap.set('n', '<PageUp>', '7<C-y>', { noremap = true, silent = true, desc = 'Scroll up 7 lines (no cursor move)' })
@@ -82,8 +81,8 @@ function ToggleTerminal()
 end
 vim.keymap.set({ 'n', 't' }, '<leader>tt', ToggleTerminal, { desc = '[T]oggle [T]erminal' })
 vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]], { desc = 'Exit terminal mode' })
--- Clear highlights on search when pressing <Esc> in normal mode
--- TIP: Disable arrow keys in normal mode
+
+-- TODO: Re-enable when get use to hjkl
 vim.keymap.set('n', '<left>', '<cmd>echoe "Use h to move!!"<CR>')
 vim.keymap.set('n', '<right>', '<cmd>echoe "Use l to move!!"<CR>')
 vim.keymap.set('n', '<up>', '<cmd>echoe "Use k to move!!"<CR>')
@@ -114,8 +113,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
--- [[ Install `lazy.nvim` plugin manager ]]
---    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
+-- Install lazy if it is not already installed
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
@@ -130,20 +128,8 @@ local rtp = vim.opt.rtp
 rtp:prepend(lazypath)
 
 -- [[ Configure and install plugins ]]
---
---  To check the current status of your plugins, run
---    :Lazy
---
---  You can press `?` in this menu for help. Use `:q` to close the window
---
---  To update plugins you can run
---    :Lazy update
---
--- NOTE: Here is where you install your plugins.
 require('lazy').setup(require 'plugins', {
   ui = {
-    -- If you are using a Nerd Font: set icons to an empty table which will use the
-    -- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table
     icons = vim.g.have_nerd_font and {} or {
       cmd = '⌘',
       config = '🛠',
@@ -161,6 +147,3 @@ require('lazy').setup(require 'plugins', {
     },
   },
 })
-
--- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 et
