@@ -20,6 +20,12 @@ end)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- [[ Indentation Settings ]]
+vim.o.expandtab = true -- Use spaces instead of tabs
+vim.o.tabstop = 2 -- Number of spaces for a tab
+vim.o.shiftwidth = 2 -- Number of spaces for indent
+vim.o.softtabstop = 2 -- Number of spaces when pressing tab in insert mode
+
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.mouse = 'a'
