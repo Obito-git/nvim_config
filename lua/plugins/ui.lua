@@ -1,4 +1,20 @@
 return {
+  -- Theme inspired by Tokyo Night
+  {
+    'folke/tokyonight.nvim',
+    priority = 1000,
+    config = function()
+      ---@diagnostic disable-next-line: missing-fields
+      require('tokyonight').setup {
+        styles = {
+          comments = { italic = false },
+        },
+      }
+      vim.cmd.colorscheme 'tokyonight-night'
+    end,
+  },
+  -- Highlight todo, notes, etc in comments
+  { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
   { -- Useful plugin to show pending keybinds
     'folke/which-key.nvim',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
